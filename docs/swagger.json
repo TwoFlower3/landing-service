@@ -1,0 +1,83 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {},
+        "license": {}
+    },
+    "paths": {
+        "/send": {
+            "post": {
+                "description": "отправка резюме кандидата на почту",
+                "consumes": [
+                    "application/json"
+                ],
+                "summary": "отправка резюме",
+                "parameters": [
+                    {
+                        "description": "resume",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.Resume"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "error",
+                        "schema": {
+                            "$ref": "#/definitions/string"
+                        }
+                    },
+                    "500": {
+                        "description": "error",
+                        "schema": {
+                            "$ref": "#/definitions/string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.File": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "string"
+                },
+                "filename": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.Resume": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "file": {
+                    "type": "object",
+                    "$ref": "#/definitions/model.File"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "number": {
+                    "type": "string"
+                },
+                "project": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

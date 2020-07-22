@@ -1,0 +1,20 @@
+version: '3'
+networks:
+  hr-service:
+    driver: bridge
+
+services:
+  interview:
+    build: ../.
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      DEBUG: "true"
+      PORT: "8080"
+      SMTP_HOSTNAME: ""
+      LOGIN: ""
+      PASSWORD: ""
+      SEND_MAIL: ""
+    networks:
+      - "hr-service"

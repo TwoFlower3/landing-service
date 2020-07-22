@@ -1,0 +1,53 @@
+definitions:
+  model.File:
+    properties:
+      content:
+        type: string
+      filename:
+        type: string
+    type: object
+  model.Resume:
+    properties:
+      email:
+        type: string
+      file:
+        $ref: '#/definitions/model.File'
+        type: object
+      name:
+        type: string
+      number:
+        type: string
+      project:
+        type: string
+    type: object
+info:
+  contact: {}
+  license: {}
+paths:
+  /send:
+    post:
+      consumes:
+      - application/json
+      description: отправка резюме кандидата на почту
+      parameters:
+      - description: resume
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/model.Resume'
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: error
+          schema:
+            $ref: '#/definitions/string'
+        "500":
+          description: error
+          schema:
+            $ref: '#/definitions/string'
+      summary: отправка резюме
+swagger: "2.0"
